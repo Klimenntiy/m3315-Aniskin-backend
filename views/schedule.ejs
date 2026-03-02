@@ -1,0 +1,81 @@
+<%- include('partials/header') %>
+
+<section id="schedule">
+    <%- include('partials/session') %>
+    <h2>Мое расписание</h2>
+    <div class="flex-row">
+        <article>
+            <h3>Привычки на неделю</h3>
+            <ul>
+                <li><strong>Понедельник:</strong> Зарядка 07:00</li>
+                <li><b>Вторник:</b> Чтение 20:00</li>
+                <li><em>Среда:</em> Английский 19:00</li>
+                <li><del>Четверг:</del> <ins>Отдых</ins></li>
+                <li><strong>Пятница:</strong> Плавание 18:00</li>
+                <li><strong>Суббота:</strong> Йога 10:00</li>
+                <li><strong>Воскресенье:</strong> Планирование 20:00</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Календарь выполнения</h3>
+            <pre>
+┌────────────────────┐
+│     Март 2026      │
+├────────────────────┤
+│ Пн Вт Ср Чт Пт Сб Вс│
+│                     │
+│  ✓  ✓  ✓  ✓  ✓  -  -│
+│  ✓  ✓  ✓  -  -  ✓  ✓│
+│  ✓  ✓  ✓  ✓  ✓  ✓  -│
+└────────────────────┘
+            </pre>
+        </article>
+    </div>
+
+    <article>
+        <h3>Статистика выполнения</h3>
+        <div class="flex-row">
+            <div class="stat-card">
+                <h4>Эта неделя</h4>
+                <p class="big-number">14/21</p>
+                <p>привычек выполнено</p>
+                <progress value="14" max="21">67%</progress>
+            </div>
+            <div class="stat-card">
+                <h4>Лучший день</h4>
+                <p class="big-number">Среда</p>
+                <p>4 привычки</p>
+            </div>
+            <div class="stat-card">
+                <h4>Серия</h4>
+                <p class="big-number">5 дней</p>
+                <p>подряд</p>
+            </div>
+        </div>
+    </article>
+</section>
+
+<style>
+    .stat-card {
+        background: #f0f0f0;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        flex: 1;
+        margin: 10px;
+    }
+    .big-number {
+        font-size: 24px;
+        font-weight: bold;
+        color: #81a684;
+        margin: 10px 0;
+    }
+    progress {
+        width: 100%;
+        height: 20px;
+        border-radius: 10px;
+    }
+</style>
+
+<%- include('partials/footer') %>

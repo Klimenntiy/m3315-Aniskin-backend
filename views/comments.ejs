@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<section>
+    <%- include('partials/session') %>
+    <h2>Комментарии с JSONPlaceholder</h2>
+
+    <div class="controls">
+        <button data-filter="high">Показать ID ≥ 50</button>
+        <button data-filter="low">Показать ID ≤ 20</button>
+    </div>
+
+    <div id="comments-container">
+        <div id="preloader">
+            <div class="dot-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div id="error"></div>
+        <div id="comments-list"></div>
+    </div>
+</section>
+
+<script src="/js/fetch-comments.js" defer></script>
+
+<%- include('partials/footer') %>

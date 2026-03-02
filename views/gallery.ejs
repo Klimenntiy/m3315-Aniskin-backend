@@ -1,0 +1,76 @@
+<%- include('partials/header') %>
+
+<section id="gallery">
+    <%- include('partials/session') %>
+    <h2>Галерея достижений</h2>
+
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="/img/1.jpg" alt="30 дней подряд" loading="lazy">
+                <div class="slide-caption">
+                    <h3>30 дней подряд</h3>
+                    <p>Месяц регулярных тренировок</p>
+                    <div class="achievement-badge"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/2.jpg" alt="Новые привычки" loading="lazy">
+                <div class="slide-caption">
+                    <h3>Новые привычки</h3>
+                    <p>Добавлено 5 новых привычек</p>
+                    <div class="achievement-badge"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/1.jpg" alt="Ежедневный прогресс" loading="lazy">
+                <div class="slide-caption">
+                    <h3>Ежедневный прогресс</h3>
+                    <p>90% выполнение целей</p>
+                    <div class="achievement-badge"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/2.jpg" alt="Мотивация" loading="lazy">
+                <div class="slide-caption">
+                    <h3>Мотивация</h3>
+                    <p>Поделился результатами</p>
+                    <div class="achievement-badge"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/1.jpg" alt="Консистентность" loading="lazy">
+                <div class="slide-caption">
+                    <h3>Консистентность</h3>
+                    <p>Не пропустил ни одного дня</p>
+                    <div class="achievement-badge"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <div class="gallery-stats">
+        <div class="stat-item">
+            <span class="stat-number">15</span>
+            <span class="stat-label">Достижений</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">85%</span>
+            <span class="stat-label">Прогресс</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">30</span>
+            <span class="stat-label">Дней подряд</span>
+        </div>
+    </div>
+</section>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="/js/gallery-swiper.js" defer></script>
+
+<%- include('partials/footer') %>

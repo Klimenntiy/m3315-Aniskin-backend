@@ -1,0 +1,69 @@
+<%- include('partials/header') %>
+
+<section id="progress">
+    <%- include('partials/session') %>
+    <h2>Мой прогресс</h2>
+    <img src="/img/2.jpg" alt="Рандом фото 2">
+    <div class="flex-row">
+        <article>
+            <h3>Текущие результаты</h3>
+            <ol>
+                <li>Зарядка: 15 дней подряд</li>
+                <li>Чтение: 10 дней</li>
+                <li>Английский: 5 дней</li>
+            </ol>
+        </article>
+
+        <article>
+            <h3>Формула успеха</h3>
+            <p>Успех = Привычка<sub>ежедневная</sub> × Время<sup>21</sup></p>
+
+            <blockquote>
+                <q>Мы — это то, что мы постоянно делаем</q>
+                <cite>— Аристотель</cite>
+            </blockquote>
+        </article>
+    </div>
+
+    <article>
+        <h3>Визуализация прогресса</h3>
+
+        <div class="charts-container">
+            <div class="chart-wrapper">
+                <h4>Прогресс за 5 недель</h4>
+                <div class="chart-container">
+                    <canvas id="progressChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-wrapper">
+                <h4>Распределение за неделю</h4>
+                <div class="chart-container">
+                    <canvas id="weeklyChart" width="300" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article>
+        <h3>Пример кода трекера</h3>
+        <pre><code>
+class Habit {
+    constructor(name, time) {
+        this.name = name;
+        this.time = time;
+        this.completed = false;
+    }
+
+    markComplete() {
+        this.completed = true;
+    }
+}
+        </code></pre>
+    </article>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/progress-charts.js" defer></script>
+
+<%- include('partials/footer') %>

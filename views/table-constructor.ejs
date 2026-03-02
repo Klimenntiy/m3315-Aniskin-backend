@@ -1,0 +1,56 @@
+<%- include('partials/header') %>
+
+<section>
+    <%- include('partials/session') %>
+    <h2>Конструктор расписания</h2>
+
+    <form id="table-settings-form">
+        <div class="flex-row">
+            <div class="form-group">
+                <label><strong>Тип недели:</strong></label>
+                <select name="table-type">
+                    <option value="5-day">5-дневная</option>
+                    <option value="6-day">6-дневная</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Занятий в день:</strong></label>
+                <input type="number" name="max-lessons" value="6" min="1" max="10">
+            </div>
+
+            <div class="form-group">
+                <label><strong>Язык:</strong></label>
+                <select name="language">
+                    <option value="ru">Русский</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><strong>Название таблицы:</strong></label>
+            <input type="text" name="table-title" value="Мое расписание">
+        </div>
+
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="show-time" checked> Показывать время
+            </label>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit">Создать таблицу</button>
+            <button type="button" id="save-btn">Сохранить настройки</button>
+            <button type="button" id="load-btn">Загрузить настройки</button>
+        </div>
+    </form>
+
+    <div id="table-container" class="table-container">
+        <p class="placeholder-text">Таблица появится здесь после создания</p>
+    </div>
+</section>
+
+<script src="/js/table-constructor.js" defer></script>
+
+<%- include('partials/footer') %>
