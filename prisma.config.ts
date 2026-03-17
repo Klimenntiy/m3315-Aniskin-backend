@@ -1,7 +1,9 @@
 import { defineConfig } from '@prisma/config'
+import 'dotenv/config';
 
 export default defineConfig({
+    schema: 'prisma/schema.prisma',
     datasource: {
-        url: "postgresql://habit_tracker_db_uxfk_user:Vh1VXlHkXNSjw3GtIE6GQqWVv3Rf5xSs@dpg-d6j8tqvgi27c73f55e4g-a.frankfurt-postgres.render.com/habit_tracker_db_uxfk",
+        url: process.env.DATABASE_URL,
     },
 })

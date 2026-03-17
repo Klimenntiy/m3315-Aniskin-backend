@@ -1,5 +1,8 @@
+import { HabitsService } from './habits/habits.service';
 export declare class AppController {
-    getIndexPage(auth: string): {
+    private readonly habitsService;
+    constructor(habitsService: HabitsService);
+    getIndexPage(auth: string): Promise<{
         title: string;
         features: {
             title: string;
@@ -9,7 +12,7 @@ export declare class AppController {
             isLoggedIn: boolean;
             username: string | null;
         };
-    };
+    }>;
     getAddHabitPage(auth: string): {
         title: string;
         session: {
@@ -66,4 +69,34 @@ export declare class AppController {
             username: string | null;
         };
     };
+    getHabitsPage(auth: string): Promise<{
+        title: string;
+        habits: ({
+            user: {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+                name: string | null;
+                email: string;
+            };
+            category: {
+                description: string | null;
+                id: number;
+                createdAt: Date;
+                name: string;
+            } | null;
+        } & {
+            title: string;
+            description: string | null;
+            userId: number;
+            categoryId: number | null;
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+        })[];
+        session: {
+            isLoggedIn: boolean;
+            username: string | null;
+        };
+    }>;
 }

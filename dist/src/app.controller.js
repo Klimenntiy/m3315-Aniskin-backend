@@ -14,8 +14,13 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
+const habits_service_1 = require("./habits/habits.service");
 let AppController = class AppController {
-    getIndexPage(auth) {
+    habitsService;
+    constructor(habitsService) {
+        this.habitsService = habitsService;
+    }
+    async getIndexPage(auth) {
         const features = [
             {
                 title: 'Планирование',
@@ -108,6 +113,17 @@ let AppController = class AppController {
             },
         };
     }
+    async getHabitsPage(auth) {
+        const habits = await this.habitsService.findAll();
+        return {
+            title: 'Мои привычки',
+            habits: habits,
+            session: {
+                isLoggedIn: auth === 'true',
+                username: auth === 'true' ? 'Иван Петров' : null,
+            },
+        };
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -116,7 +132,7 @@ __decorate([
     __param(0, (0, common_1.Query)('auth')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AppController.prototype, "getIndexPage", null);
 __decorate([
     (0, common_1.Get)('add-habit'),
@@ -182,7 +198,16 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "getGalleryPage", null);
+__decorate([
+    (0, common_1.Get)('habits'),
+    (0, common_1.Render)('habits/index'),
+    __param(0, (0, common_1.Query)('auth')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getHabitsPage", null);
 exports.AppController = AppController = __decorate([
-    (0, common_1.Controller)()
+    (0, common_1.Controller)(),
+    __metadata("design:paramtypes", [habits_service_1.HabitsService])
 ], AppController);
 //# sourceMappingURL=app.controller.js.map
