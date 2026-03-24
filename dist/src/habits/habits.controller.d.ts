@@ -5,8 +5,8 @@ export declare class HabitsController {
     private readonly habitsService;
     constructor(habitsService: HabitsService);
     create(createHabitDto: CreateHabitDto): Promise<{
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
@@ -28,8 +28,8 @@ export declare class HabitsController {
             name: string;
         } | null;
     } & {
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
@@ -69,8 +69,8 @@ export declare class HabitsController {
                 notes: string | null;
             }[];
         } & {
-            title: string;
             description: string | null;
+            title: string;
             userId: number;
             categoryId: number | null;
             id: number;
@@ -82,8 +82,8 @@ export declare class HabitsController {
         };
     }>;
     update(id: string, updateHabitDto: UpdateHabitDto): Promise<{
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
@@ -91,8 +91,8 @@ export declare class HabitsController {
         updatedAt: Date;
     }>;
     remove(id: string): Promise<{
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
@@ -124,8 +124,8 @@ export declare class HabitsController {
                 notes: string | null;
             }[];
         } & {
-            title: string;
             description: string | null;
+            title: string;
             userId: number;
             categoryId: number | null;
             id: number;

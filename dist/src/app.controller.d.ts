@@ -86,8 +86,8 @@ export declare class AppController {
                 name: string;
             } | null;
         } & {
-            title: string;
             description: string | null;
+            title: string;
             userId: number;
             categoryId: number | null;
             id: number;

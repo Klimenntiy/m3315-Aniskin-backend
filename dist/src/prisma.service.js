@@ -15,7 +15,7 @@ const client_1 = require("@prisma/client");
 const adapter_pg_1 = require("@prisma/adapter-pg");
 let PrismaService = class PrismaService extends client_1.PrismaClient {
     constructor() {
-        console.log('🔍 DATABASE_URL:', process.env.DATABASE_URL);
+        console.log('DATABASE_URL:', process.env.DATABASE_URL);
         if (!process.env.DATABASE_URL) {
             throw new Error('DATABASE_URL is not defined!');
         }

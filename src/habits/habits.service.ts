@@ -60,4 +60,34 @@ export class HabitsService {
             where: { id },
         });
     }
+
+    async findAllPaginated(page: number = 1, limit: number = 10) {
+        const skip = (page - 1) * limit;
+        const [habits, total] = await Promise.all([
+            this.prisma.habit.findMany({
+                skip,
+                take: limit,
+                include: {
+                    user: true,
+                    category: true,
+                },
+                orderBy: { createdAt: 'desc' },
+            }),
+            this.prisma.habit.count(),
+        ]);
+
+        const totalPages = Math.ceil(total / limit);
+
+        return {
+            data: habits,
+            pagination: {
+                page,
+                limit,
+                total,
+                totalPages,
+                next: page < totalPages ? `/api/habits?page=${page + 1}&limit=${limit}` : null,
+                prev: page > 1 ? `/api/habits?page=${page - 1}&limit=${limit}` : null,
+            },
+        };
+    }
 }
