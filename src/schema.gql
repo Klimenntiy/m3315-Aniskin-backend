@@ -1,0 +1,68 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateHabitInput {
+  categoryId: Int
+  description: String
+  title: String!
+  userId: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type HabitType {
+  categoryId: Int
+  createdAt: DateTime!
+  description: String
+  id: Int!
+  title: String!
+  updatedAt: DateTime!
+  user: UserType
+  userId: Int!
+}
+
+type HabitsPaginatedType {
+  data: [HabitType!]!
+  pagination: PaginationInfo!
+}
+
+type Mutation {
+  createHabit(input: CreateHabitInput!): HabitType!
+  deleteHabit(id: Int!): HabitType!
+  updateHabit(input: UpdateHabitInput!): HabitType!
+}
+
+type PaginationInfo {
+  limit: Int!
+  next: String
+  page: Int!
+  prev: String
+  total: Int!
+  totalPages: Int!
+}
+
+type Query {
+  habit(id: Int!): HabitType
+  habits: [HabitType!]!
+  habitsPaginated(limit: Int! = 10, page: Int! = 1): HabitsPaginatedType!
+}
+
+input UpdateHabitInput {
+  categoryId: Int
+  description: String
+  id: Int!
+  title: String
+  userId: Int
+}
+
+type UserType {
+  createdAt: DateTime!
+  email: String!
+  id: Int!
+  name: String
+  updatedAt: DateTime!
+}

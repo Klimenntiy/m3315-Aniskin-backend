@@ -8,15 +8,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const graphql_1 = require("@nestjs/graphql");
+const apollo_1 = require("@nestjs/apollo");
+const path_1 = require("path");
 const app_controller_1 = require("./app.controller");
 const habits_module_1 = require("./habits/habits.module");
 const events_module_1 = require("./events/events.module");
+const graphql_query_complexity_1 = require("graphql-query-complexity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [habits_module_1.HabitsModule, events_module_1.EventsModule],
+        imports: [
+            graphql_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
+                playground: true,
+                sortSchema: true,
+                validationRules: [
+                    (0, graphql_query_complexity_1.createComplexityRule)({
+                        estimators: [
+                            (0, graphql_query_complexity_1.simpleEstimator)({ defaultComplexity: 1 }),
+                        ],
+                        maximumComplexity: 500,
+                        onComplete: (complexity) => {
+                            console.log(`Query complexity: ${complexity}`);
+                        },
+                    }),
+                ],
+            }),
+            habits_module_1.HabitsModule,
+            events_module_1.EventsModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [],
     })
