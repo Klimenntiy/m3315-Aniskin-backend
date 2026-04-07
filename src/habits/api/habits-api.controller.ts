@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Query, UseInterceptors } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery, ApiBody } from '@nestjs/swagger';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager'; // ← добавить импорт
 import { HabitsService } from '../habits.service';
 import { CreateHabitDto } from '../dto/create-habit.dto';
 import { UpdateHabitDto } from '../dto/update-habit.dto';
@@ -20,6 +21,8 @@ export class HabitsApiController {
     }
 
     @Get()
+    @UseInterceptors(CacheInterceptor)
+    @CacheTTL(10000)
     @ApiOperation({ summary: 'Получить список привычек' })
     @ApiResponse({ status: 200, description: 'Список привычек' })
     @ApiQuery({ name: 'page', required: false, type: Number, description: 'Номер страницы' })
@@ -28,6 +31,7 @@ export class HabitsApiController {
         @Query('page') page?: string,
         @Query('limit') limit?: string,
     ) {
+        console.log('Запрос в БД для /api/habits');
         const pageNum = page ? parseInt(page, 10) : 1;
         const limitNum = limit ? parseInt(limit, 10) : 10;
         return this.habitsService.findAllPaginated(pageNum, limitNum);

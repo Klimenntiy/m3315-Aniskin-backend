@@ -7,39 +7,39 @@ export declare class HabitsResolver {
     habits(): Promise<({
         user: {
             id: number;
-            email: string;
-            name: string | null;
             createdAt: Date;
             updatedAt: Date;
+            name: string | null;
+            email: string;
         };
         category: {
-            id: number;
-            name: string;
-            createdAt: Date;
             description: string | null;
+            id: number;
+            createdAt: Date;
+            name: string;
         } | null;
     } & {
+        description: string | null;
+        title: string;
+        userId: number;
+        categoryId: number | null;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        title: string;
-        description: string | null;
-        userId: number;
-        categoryId: number | null;
     })[]>;
     habit(id: number): Promise<({
         user: {
             id: number;
-            email: string;
-            name: string | null;
             createdAt: Date;
             updatedAt: Date;
+            name: string | null;
+            email: string;
         };
         category: {
-            id: number;
-            name: string;
-            createdAt: Date;
             description: string | null;
+            id: number;
+            createdAt: Date;
+            name: string;
         } | null;
         logs: {
             id: number;
@@ -50,37 +50,37 @@ export declare class HabitsResolver {
             notes: string | null;
         }[];
     } & {
+        description: string | null;
+        title: string;
+        userId: number;
+        categoryId: number | null;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        title: string;
-        description: string | null;
-        userId: number;
-        categoryId: number | null;
     }) | null>;
     habitsPaginated(page: number, limit: number): Promise<{
         data: ({
             user: {
                 id: number;
-                email: string;
-                name: string | null;
                 createdAt: Date;
                 updatedAt: Date;
+                name: string | null;
+                email: string;
             };
             category: {
-                id: number;
-                name: string;
-                createdAt: Date;
                 description: string | null;
+                id: number;
+                createdAt: Date;
+                name: string;
             } | null;
         } & {
+            description: string | null;
+            title: string;
+            userId: number;
+            categoryId: number | null;
             id: number;
             createdAt: Date;
             updatedAt: Date;
-            title: string;
-            description: string | null;
-            userId: number;
-            categoryId: number | null;
         })[];
         pagination: {
             page: number;
@@ -92,30 +92,30 @@ export declare class HabitsResolver {
         };
     }>;
     createHabit(input: CreateHabitInput): Promise<{
+        description: string | null;
+        title: string;
+        userId: number;
+        categoryId: number | null;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        title: string;
-        description: string | null;
-        userId: number;
-        categoryId: number | null;
     }>;
     updateHabit(input: UpdateHabitInput): Promise<{
+        description: string | null;
+        title: string;
+        userId: number;
+        categoryId: number | null;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        title: string;
-        description: string | null;
-        userId: number;
-        categoryId: number | null;
     }>;
     deleteHabit(id: number): Promise<{
+        description: string | null;
+        title: string;
+        userId: number;
+        categoryId: number | null;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        title: string;
-        description: string | null;
-        userId: number;
-        categoryId: number | null;
     }>;
 }

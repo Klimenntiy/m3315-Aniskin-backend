@@ -10,18 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrismaService = void 0;
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
 const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
 const adapter_pg_1 = require("@prisma/adapter-pg");
+const pg_1 = require("pg");
 let PrismaService = class PrismaService extends client_1.PrismaClient {
     constructor() {
         console.log('DATABASE_URL:', process.env.DATABASE_URL);
         if (!process.env.DATABASE_URL) {
             throw new Error('DATABASE_URL is not defined!');
         }
-        const adapter = new adapter_pg_1.PrismaPg({
+        const pool = new pg_1.Pool({
             connectionString: process.env.DATABASE_URL,
         });
+        const adapter = new adapter_pg_1.PrismaPg(pool);
         super({
             adapter,
             log: ['error', 'warn'],
@@ -29,9 +33,11 @@ let PrismaService = class PrismaService extends client_1.PrismaClient {
     }
     async onModuleInit() {
         await this.$connect();
+        console.log('Prisma connected to DB');
     }
     async onModuleDestroy() {
         await this.$disconnect();
+        console.log('Prisma disconnected');
     }
 };
 exports.PrismaService = PrismaService;

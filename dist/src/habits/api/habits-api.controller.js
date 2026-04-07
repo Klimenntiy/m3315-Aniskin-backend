@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HabitsApiController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
+const cache_manager_1 = require("@nestjs/cache-manager");
 const habits_service_1 = require("../habits.service");
 const create_habit_dto_1 = require("../dto/create-habit.dto");
 const update_habit_dto_1 = require("../dto/update-habit.dto");
@@ -27,6 +28,7 @@ let HabitsApiController = class HabitsApiController {
         return this.habitsService.create(createHabitDto);
     }
     async findAll(page, limit) {
+        console.log('Запрос в БД для /api/habits');
         const pageNum = page ? parseInt(page, 10) : 1;
         const limitNum = limit ? parseInt(limit, 10) : 10;
         return this.habitsService.findAllPaginated(pageNum, limitNum);
@@ -68,6 +70,8 @@ __decorate([
 ], HabitsApiController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.UseInterceptors)(cache_manager_1.CacheInterceptor),
+    (0, cache_manager_1.CacheTTL)(10000),
     (0, swagger_1.ApiOperation)({ summary: 'Получить список привычек' }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Список привычек' }),
     (0, swagger_1.ApiQuery)({ name: 'page', required: false, type: Number, description: 'Номер страницы' }),

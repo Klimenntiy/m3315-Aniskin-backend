@@ -8,11 +8,13 @@ import { join } from 'path';
 import methodOverride from 'method-override';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { HttpExceptionFilter } from "./common/filters/http-exception.filter";
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
     app.useGlobalFilters(new HttpExceptionFilter());
+    app.useGlobalInterceptors(new LoggingInterceptor());
 
     const swaggerConfig = new DocumentBuilder()
         .setTitle('HabitTracker API')
