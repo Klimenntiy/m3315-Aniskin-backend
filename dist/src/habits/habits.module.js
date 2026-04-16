@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const habits_service_1 = require("./habits.service");
 const habits_controller_1 = require("./habits.controller");
 const habits_api_controller_1 = require("./api/habits-api.controller");
+const habits_resolver_1 = require("./habits.resolver");
 const prisma_module_1 = require("../prisma.module");
 let HabitsModule = class HabitsModule {
 };
@@ -19,7 +20,7 @@ exports.HabitsModule = HabitsModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [habits_controller_1.HabitsController, habits_api_controller_1.HabitsApiController],
-        providers: [habits_service_1.HabitsService],
+        providers: [habits_service_1.HabitsService, habits_resolver_1.HabitsResolver],
         exports: [habits_service_1.HabitsService],
     })
 ], HabitsModule);
