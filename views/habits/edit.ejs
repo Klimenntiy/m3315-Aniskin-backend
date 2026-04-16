@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+<%- include('../partials/session') %>
+
+<section class="habit-form-section">
+    <h2>Редактировать привычку</h2>
+
+    <form action="/habits/<%= habit.id %>?_method=PATCH" method="POST" class="habit-form">
+        <div class="form-group">
+            <label for="title">Название привычки *</label>
+            <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value="<%= habit.title %>"
+                    required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea
+                    id="description"
+                    name="description"
+                    rows="3"
+            ><%= habit.description || '' %></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-save">Сохранить</button>
+            <a href="/habits/<%= habit.id %>" class="btn-cancel">Отмена</a>
+        </div>
+    </form>
+</section>
+
+<%- include('../partials/footer') %>

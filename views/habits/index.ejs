@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+<%- include('../partials/session') %>
+
+<section class="habits-section">
+    <div class="habits-header">
+        <h2>Мои привычки</h2>
+        <a href="/habits/new" class="btn-add">Добавить привычку</a>
+    </div>
+
+    <% if (habits.length === 0) { %>
+        <p class="empty-message">У вас пока нет привычек. Создайте первую!</p>
+    <% } else { %>
+        <div class="habits-grid">
+            <% habits.forEach(habit => { %>
+                <div class="habit-card">
+                    <h3><%= habit.title %></h3>
+                    <% if (habit.description) { %>
+                        <p class="habit-description"><%= habit.description %></p>
+                    <% } %>
+
+                    <div class="habit-meta">
+                        <span class="habit-category">
+                            Категория: <%= habit.category?.name || 'Без категории' %>
+                        </span>
+                        <span class="habit-streak">
+                            Серия: <%= habit.logs?.length || 0 %> дней
+                        </span>
+                    </div>
+
+                    <div class="habit-actions">
+                        <a href="/habits/<%= habit.id %>" class="btn-view">Просмотр</a>
+                        <a href="/habits/<%= habit.id %>/edit" class="btn-edit">Редактировать</a>
+                        <form action="/habits/<%= habit.id %>?_method=DELETE" method="POST" class="delete-form">
+                            <button type="submit" class="btn-delete" onclick="return confirm('Удалить привычку?')">🗑️</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</section>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+<%- include('../partials/session') %>
+
+<section class="habit-form-section">
+    <h2>Новая привычка</h2>
+
+    <form action="/habits" method="POST" class="habit-form">
+        <div class="form-group">
+            <label for="title">Название привычки *</label>
+            <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    placeholder="Например: Утренняя зарядка"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea
+                    id="description"
+                    name="description"
+                    rows="3"
+                    placeholder="Опишите привычку подробнее..."
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="userId">Пользователь *</label>
+            <select id="userId" name="userId" required>
+                <option value="2">Test User (тестовый)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryId">Категория</label>
+            <select id="categoryId" name="categoryId">
+                <option value="">Без категории</option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-save"> Создать привычку</button>
+            <a href="/habits" class="btn-cancel">Отмена</a>
+        </div>
+    </form>
+</section>
+
+<%- include('../partials/footer') %>

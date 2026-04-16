@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+<%- include('../partials/session') %>
+
+<section class="habit-detail">
+    <div class="habit-header">
+        <h2><%= habit.title %></h2>
+        <div class="habit-actions">
+            <a href="/habits/<%= habit.id %>/edit" class="btn-edit">️ Редактировать</a>
+            <form action="/habits/<%= habit.id %>?_method=DELETE" method="POST" class="delete-form">
+                <button type="submit" class="btn-delete" onclick="return confirm('Удалить привычку?')">🗑️ Удалить</button>
+            </form>
+        </div>
+    </div>
+
+    <% if (habit.description) { %>
+        <div class="habit-description">
+            <h3>Описание</h3>
+            <p><%= habit.description %></p>
+        </div>
+    <% } %>
+
+    <div class="habit-meta">
+        <div class="meta-item">
+            <span class="meta-label">Пользователь:</span>
+            <span class="meta-value"><%= habit.user?.name || habit.user?.email || 'Неизвестно' %></span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Категория:</span>
+            <span class="meta-value"><%= habit.category?.name || 'Без категории' %></span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Создано:</span>
+            <span class="meta-value"><%= new Date(habit.createdAt).toLocaleDateString() %></span>
+        </div>
+    </div>
+
+    <div class="habit-logs">
+        <h3>Журнал выполнения</h3>
+        <% if (habit.logs && habit.logs.length > 0) { %>
+            <table class="logs-table">
+                <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Статус</th>
+                    <th>Заметки</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% habit.logs.forEach(log => { %>
+                    <tr>
+                        <td><%= new Date(log.date).toLocaleDateString() %></td>
+                        <td><%= log.completed ? '+' : '-' %></td>
+                        <td><%= log.notes || '-' %></td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="empty-message">Пока нет записей о выполнении</p>
+        <% } %>
+    </div>
+
+    <div class="nav-links">
+        <a href="/habits" class="btn-back">← Назад к списку</a>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
