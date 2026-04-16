@@ -11,9 +11,11 @@ const path_1 = require("path");
 const method_override_1 = __importDefault(require("method-override"));
 const swagger_1 = require("@nestjs/swagger");
 const http_exception_filter_1 = require("./common/filters/http-exception.filter");
+const logging_interceptor_1 = require("./common/interceptors/logging.interceptor");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.useGlobalFilters(new http_exception_filter_1.HttpExceptionFilter());
+    app.useGlobalInterceptors(new logging_interceptor_1.LoggingInterceptor());
     const swaggerConfig = new swagger_1.DocumentBuilder()
         .setTitle('HabitTracker API')
         .setDescription('API для управления привычками')
