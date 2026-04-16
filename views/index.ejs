@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+
+<section id="welcome">
+    <%- include('partials/session') %>
+    <h2>Добро пожаловать в HabitTracker!</h2>
+    <img src="/img/1.jpg" alt="Мотивация для привычек">
+    <article>
+        <h3>Начните свой путь к лучшей версии себя</h3>
+        <p>HabitTracker поможет вам создать и поддерживать полезные привычки, отслеживать прогресс и достигать поставленных целей.</p>
+
+        <div class="flex-row">
+            <% features.forEach(feature => { %>
+                <%- include('partials/feature-card', { feature: feature }) %>
+            <% }) %>
+        </div>
+    </article>
+
+    <aside>
+        <h4>Интересный факт</h4>
+        <p>Для формирования новой привычки требуется в среднем <strong>66 дней</strong> регулярного повторения!</p>
+    </aside>
+</section>
+
+<section id="quick-stats">
+    <h2>Быстрая статистика</h2>
+    <div class="flex-row">
+        <article>
+            <h3>Сегодня</h3>
+            <ul>
+                <li>Выполнено: 3 привычки</li>
+                <li>Осталось: 2 привычки</li>
+                <li>Прогресс дня: 60%</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Неделя</h3>
+            <ul>
+                <li>Серия: 5 дней подряд</li>
+                <li>Цель недели: 80% выполнения</li>
+                <li>Лучший день: Понедельник</li>
+            </ul>
+        </article>
+    </div>
+</section>
+
+<div class="ad-banner">
+    <h3>Premium версия HabitTracker</h3>
+    <p>Расширенные возможности аналитики и синхронизация с календарем</p>
+    <button>Узнать больше</button>
+</div>
+
+<%- include('partials/footer') %>

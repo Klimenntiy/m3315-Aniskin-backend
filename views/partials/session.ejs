@@ -1,0 +1,11 @@
+<% if (session.isLoggedIn) { %>
+    <div style="color: #000000; margin-top: 5px;">
+        Вы вошли как: <strong><%= session.username %></strong>
+        <a href="/?auth=false" style="color: #f5b971; margin-left: 10px;">Выйти</a>
+    </div>
+<% } else { %>
+    <div style="margin-top: 5px;">
+        <a href="/?auth=true" style="color: #f5b971; margin-right: 10px;">Войти</a>
+        <a href="/?auth=true" style="color: #f5b971;">Регистрация</a>
+    </div>
+<% } %>
