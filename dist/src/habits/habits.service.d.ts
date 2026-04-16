@@ -7,8 +7,8 @@ export declare class HabitsService {
     private eventEmitter;
     constructor(prisma: PrismaService, eventEmitter: EventEmitter2);
     create(createHabitDto: CreateHabitDto): Promise<{
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
@@ -30,8 +30,8 @@ export declare class HabitsService {
             name: string;
         } | null;
     } & {
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
@@ -61,8 +61,8 @@ export declare class HabitsService {
             notes: string | null;
         }[];
     } & {
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
@@ -70,8 +70,8 @@ export declare class HabitsService {
         updatedAt: Date;
     }) | null>;
     update(id: number, updateHabitDto: UpdateHabitDto): Promise<{
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
@@ -79,12 +79,45 @@ export declare class HabitsService {
         updatedAt: Date;
     }>;
     remove(id: number): Promise<{
-        title: string;
         description: string | null;
+        title: string;
         userId: number;
         categoryId: number | null;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+    }>;
+    findAllPaginated(page?: number, limit?: number): Promise<{
+        data: ({
+            user: {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+                name: string | null;
+                email: string;
+            };
+            category: {
+                description: string | null;
+                id: number;
+                createdAt: Date;
+                name: string;
+            } | null;
+        } & {
+            description: string | null;
+            title: string;
+            userId: number;
+            categoryId: number | null;
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+        })[];
+        pagination: {
+            page: number;
+            limit: number;
+            total: number;
+            totalPages: number;
+            next: string | null;
+            prev: string | null;
+        };
     }>;
 }
